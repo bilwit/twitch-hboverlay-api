@@ -24,13 +24,14 @@ module.exports = Router({ mergeParams: true }).post('/monsters/base', upload.sin
   
     if (monster && monster?.id > 0) {
 
-      if (JSON.parse(req.body.published) === true) {
-        // update Twitch service watched monster list in case of publish status change
-        req['TwitchEmitter'].emit('publish', {
-          id: monster.id,
-          status: JSON.parse(req.body.published),
-        });
-      }
+      // **************************** MOVE TO CLIENT ****************************
+      // if (JSON.parse(req.body.published) === true) {
+      //   // update Twitch service watched monster list in case of publish status change
+      //   req['TwitchEmitter'].emit('publish', {
+      //     id: monster.id,
+      //     status: JSON.parse(req.body.published),
+      //   });
+      // }
 
       return res.status(200).json({
         success: true,

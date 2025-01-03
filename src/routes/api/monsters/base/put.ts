@@ -45,23 +45,24 @@ module.exports = Router({ mergeParams: true }).put('/monsters/base/:id', upload.
   
     if (monster && monster?.id > 0) {
 
-      if (CheckAvatar.published !== JSON.parse(req.body.published)) {
-        // update Twitch service watched monster list in case of publish status change
-        req['TwitchEmitter'].emit('publish', {
-          id: monster.id,
-          status: JSON.parse(req.body.published),
-        });
-      } else if (JSON.parse(req.body.published)){
-        // re-initialize watched monster to update multiplier/theme/triggers
-        req['TwitchEmitter'].emit('publish', {
-          id: monster.id,
-          status: false,
-        });
-        req['TwitchEmitter'].emit('publish', {
-          id: monster.id,
-          status: true,
-        });
-      }
+      // **************************** MOVE TO CLIENT ****************************
+      // if (CheckAvatar.published !== JSON.parse(req.body.published)) {
+      //   // update Twitch service watched monster list in case of publish status change
+      //   req['TwitchEmitter'].emit('publish', {
+      //     id: monster.id,
+      //     status: JSON.parse(req.body.published),
+      //   });
+      // } else if (JSON.parse(req.body.published)){
+      //   // re-initialize watched monster to update multiplier/theme/triggers
+      //   req['TwitchEmitter'].emit('publish', {
+      //     id: monster.id,
+      //     status: false,
+      //   });
+      //   req['TwitchEmitter'].emit('publish', {
+      //     id: monster.id,
+      //     status: true,
+      //   });
+      // }
 
       if (deleteOldAvatarPath) {
         try {
