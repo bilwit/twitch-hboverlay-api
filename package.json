@@ -1,5 +1,6 @@
 {
   "name": "twitch-hboverlay-api",
+  "private": true,
   "version": "1.0.0",
   "description": "API for OBS healthbar overlay controlled by Twitch emote/redeem events",
   "main": "server.ts",
