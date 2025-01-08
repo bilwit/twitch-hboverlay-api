@@ -1,10 +1,10 @@
 import express, { Express } from 'express';
 import dotenv from 'dotenv';
-import consoleLogStyling from './utils/consoleLogStyling';
 import path from 'path';
 import cors from 'cors';
 import compression from 'compression';
 import { PrismaClient } from '@prisma/client';
+import httpsServer from './httpsServer';
 
 dotenv.config();
 
@@ -32,6 +32,4 @@ app.use((req: any, _res, next) => {
 
 app.use('/api', require('./routes/router')());
 
-app.listen(Number(process.env.PORT), async () => {
-  console.log(consoleLogStyling('important', '⚡️[server]: Server is running at http://localhost:' + process.env.PORT));
-});
+httpsServer(app)?.();
