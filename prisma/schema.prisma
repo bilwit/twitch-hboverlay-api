@@ -64,6 +64,7 @@ model settings {
   listener_secret     String    @db.VarChar(255)
   listener_user_name  String    @db.VarChar(255)
   channel_name        String    @db.VarChar(255)
+  redirect_uri        String    @db.VarChar(255)
   is_connected        Boolean   @default(false)
 }
 
