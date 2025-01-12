@@ -24,6 +24,7 @@ module.exports = Router({ mergeParams: true }).put('/monsters/stages/:id', uploa
     const updatedData: UpdatedStageData = {
       hp_value: JSON.parse(req.body.hp_value),
       ref_id: JSON.parse(req.body.ref_id),
+      pause_init: JSON.parse(req.body.pause_init),
     }
 
     if (JSON.parse(req.body.isAvatarChanged)) {

@@ -6,14 +6,18 @@ interface NewStage {
   hp_value: number,
   ref_id: number,
   avatar_url?: string,
+  pause_init: boolean,
 }
 
 module.exports = Router({ mergeParams: true }).post('/monsters/stages', upload.single('avatarFile'), async (req: any, res: any) => {
   try {
+    console.log(req.body.pause_init); 
+
     const isNotUnique = await req.db.stages.findFirst({
       where: {
         hp_value: JSON.parse(req.body.hp_value),
         ref_id: JSON.parse(req.body.ref_id),
+        pause_init: JSON.parse(req.body.pause_init),
       },
     });
 
@@ -23,6 +27,7 @@ module.exports = Router({ mergeParams: true }).post('/monsters/stages', upload.s
       const newData: NewStage = {
         hp_value: JSON.parse(req.body.hp_value),
         ref_id: JSON.parse(req.body.ref_id),
+        pause_init: JSON.parse(req.body.pause_init),
       }
   
       if (JSON.parse(req.body.isAvatarChanged)) {
