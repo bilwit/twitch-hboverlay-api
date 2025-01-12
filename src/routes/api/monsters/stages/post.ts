@@ -17,7 +17,7 @@ module.exports = Router({ mergeParams: true }).post('/monsters/stages', upload.s
       where: {
         hp_value: JSON.parse(req.body.hp_value),
         ref_id: JSON.parse(req.body.ref_id),
-        pause_init: JSON.parse(req.body.pause_init),
+        pause_init: JSON.parse(req.body.pause_init) === true,
       },
     });
 
@@ -27,7 +27,7 @@ module.exports = Router({ mergeParams: true }).post('/monsters/stages', upload.s
       const newData: NewStage = {
         hp_value: JSON.parse(req.body.hp_value),
         ref_id: JSON.parse(req.body.ref_id),
-        pause_init: JSON.parse(req.body.pause_init),
+        pause_init: JSON.parse(req.body.pause_init) === true,
       }
   
       if (JSON.parse(req.body.isAvatarChanged)) {
