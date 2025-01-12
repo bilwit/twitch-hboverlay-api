@@ -4,17 +4,9 @@ module.exports = Router({ mergeParams: true }).delete('/settings', async (req: a
   try {
     const settings = await req.db.settings.deleteMany({});
     
-    req.db.refresh_token.delete({
-      where: {
-        id: 1,
-      },
-    });
+    req.db.refresh_token.deleteMany();
   
     if (settings && settings.count > 0) {
-
-      // **************************** MOVE TO CLIENT ****************************
-      // req['TwitchEmitterConnection'].disconnect();
-
       return res.status(200).json({
         success: true,
       });
