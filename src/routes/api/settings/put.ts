@@ -1,7 +1,22 @@
 import { Router } from 'express';
 
+const requiredFields = [
+  'listener_auth_code',
+  'listener_client_id',
+  'listener_secret',
+  'listener_user_name',
+  'channel_name',
+  'redirect_uri',
+];
+
 module.exports = Router({ mergeParams: true }).put('/settings', async (req: any, res: any) => {
   try {
+    for (const field of requiredFields) {
+      if (!(field in req.body)) {
+        throw 'Missing field: ' + field;
+      }
+    }
+
     const settings = await req.db.settings.upsert({
       where: {
         id: 1,
